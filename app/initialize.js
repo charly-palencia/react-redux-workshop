@@ -11,12 +11,6 @@ if (module.hot) {
   module.hot.accept('./reducers', () => {
     store.replaceReducer(require('./reducers').default);
   });
-  module.hot.accept();
-
-  module.hot.dispose((data) => {
-    data.counter = store.getState();
-    [].slice.apply(document.querySelector('#app').children).forEach(function(c) { c.remove() });
-  });
 }
 
 const load = () => {

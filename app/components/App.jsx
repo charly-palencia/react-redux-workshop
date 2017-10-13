@@ -1,11 +1,11 @@
 import React from 'react';
-import Counter from './Counter';
+import LoginPage from './LoginPage';
 
 export default class App extends React.Component {
   render() {
     return (
       <div id="content">
-        <Counter />
+        <LoginPage />
       </div>
     );
   }
