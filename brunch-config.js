@@ -7,7 +7,7 @@ exports.files = {
 };
 
 exports.plugins = {
-  babel: {presets: ['latest', 'react']}
+  babel: {presets: ['latest', 'react', 'stage-3']}
 };
 
 exports.hot = true;

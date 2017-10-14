@@ -1,5 +1,6 @@
 import React from 'react';
 import LoginPage from './LoginPage';
+import { Link } from 'react-router-dom'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -39,20 +40,14 @@ export default class App extends React.Component {
             </p>
           </div>
         : null }
-
-        {loggedUser ?
-          <div>
-            Hi!
-          </div>
-        :
-          <LoginPage
-            alertInstance={alertInstance}
-            onShowAlert={this.handleShowAlert}
-            onHideAlert={this.handleHideAlert}
-            onSetLoggedUser={this.handleSetLoggedUser}
-            loggedUser={this.loggedUser}
-          />
-        }
+        <li><Link to="/example">Example</Link></li>
+        <LoginPage
+          alertInstance={alertInstance}
+          onShowAlert={this.handleShowAlert}
+          onHideAlert={this.handleHideAlert}
+          onSetLoggedUser={this.handleSetLoggedUser}
+          loggedUser={this.loggedUser}
+        />
       </div>
     );
   }

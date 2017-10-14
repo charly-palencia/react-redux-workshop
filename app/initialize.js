@@ -1,11 +1,13 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
+import reducers from './reducers';
+import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import counterApp from './reducers';
-import App from 'components/App';
+import createHistory from 'history/createBrowserHistory';
+import Root from './components/Root';
 
-const store = createStore(counterApp, module.hot && module.hot.data && module.hot.data.counter || 0);
+const store = createStore(reducers, module.hot && module.hot.data && module.hot.data.counter || 0);
+const history =createHistory()
 
 if (module.hot) {
   module.hot.accept('./reducers', () => {
@@ -15,9 +17,7 @@ if (module.hot) {
 
 const load = () => {
   ReactDOM.render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
+    <Root store={store} history={history}/>,
     document.querySelector('#app')
   );
 };
