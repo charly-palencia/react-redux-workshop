@@ -5,7 +5,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      alert: {
+      alertInstance: {
         show: false,
         message: ''
       },
@@ -17,11 +17,11 @@ export default class App extends React.Component {
   }
 
   handleShowAlert(message){
-    this.setState({alert: { show: true, message }});
+    this.setState({alertInstance: { show: true, message }});
   }
 
   handleHideAlert(message){
-    this.setState({alert: { show: false, message: ''}});
+    this.setState({alertInstance: { show: false, message: ''}});
   }
 
   handleSetLoggedUser(user){
@@ -29,13 +29,13 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { alert, loggedUser } = this.state;
+    const { alertInstance, loggedUser } = this.state;
     return (
       <div id="content" className="w3-container">
-        {alert.show ?
+        {alertInstance.show ?
           <div className="w3-panel w3-blue">
             <p>
-              {alert.message}
+              {alertInstance.message}
             </p>
           </div>
         : null }
@@ -46,11 +46,11 @@ export default class App extends React.Component {
           </div>
         :
           <LoginPage
-            alert={alert}
+            alertInstance={alertInstance}
             onShowAlert={this.handleShowAlert}
             onHideAlert={this.handleHideAlert}
             onSetLoggedUser={this.handleSetLoggedUser}
-            loggedUser={this.handleSetLoggedUser}
+            loggedUser={this.loggedUser}
           />
         }
       </div>

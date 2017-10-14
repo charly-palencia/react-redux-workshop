@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class LoginPage extends React.Component {
   constructor(props) {
@@ -71,4 +72,13 @@ export default class LoginPage extends React.Component {
       </form>
     )
   }
-}
+};
+
+LoginPage.propTypes = {
+  alertInstance: PropTypes.object,
+  onShowAlert: PropTypes.func.isRequired,
+  onHideAlert: PropTypes.func.isRequired,
+  onSetLoggedUser: PropTypes.func.isRequired,
+  loggedUser: PropTypes.object
+};
+
