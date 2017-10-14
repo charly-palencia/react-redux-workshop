@@ -5,16 +5,34 @@ export default class LoginPage extends React.Component {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      user: {
+        email: 'test@test.com',
+        password: 'Password'
+      }
     };
+    this.handleLogin = this.handleLogin.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleLogin(event){
     event.preventDefault();
     const { email, password } = this.state;
-    if(!email && !password){
-      this.props.onShowAlert('i need data!');
+    if(!email || !password){
+      return this.props.onShowAlert('i need data!');
     }
+
+    if(email==this.state.email && password == this.state.password){
+      this.props.onSetLoggedUser({email , password});
+    }
+    this.props.onHideAlert('i need data!');
+  }
+
+  handleChange(event){
+    const { id, value } = event.target;
+    let data = Object.assign({}, self.state);
+    data[id] = value;
+    this.setState(data);
   }
 
   render() {
@@ -32,6 +50,7 @@ export default class LoginPage extends React.Component {
             id="email"
             name="email"
             value={email}
+            onChange={this.handleChange}
           />
         </div>
         <div>
@@ -43,9 +62,10 @@ export default class LoginPage extends React.Component {
             id="password"
             name="password"
             value={password}
+            onChange={this.handleChange}
           />
         </div>
-      <button onClick={(e) => this.handleLogin(e)}>
+      <button onClick={this.handleLogin}>
           Login
         </button>
       </form>
