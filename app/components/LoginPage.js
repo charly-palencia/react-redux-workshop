@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import * as userActions from '../actions/user-actions';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-export default class LoginPage extends React.Component {
+class LoginPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,6 +21,7 @@ export default class LoginPage extends React.Component {
 
   handleLogin(event){
     event.preventDefault();
+    this.props.actions.loginUser('', '');
     const { email, password } = this.state;
     if(!email || !password){
       return this.props.onShowAlert('i need data!');
@@ -82,3 +86,19 @@ LoginPage.propTypes = {
   loggedUser: PropTypes.object
 };
 
+function mapStateToProps(state){
+  return {
+    users: state.users
+  };
+}
+
+function mapDispatchToProps(dispatch){
+  return {
+    actions: bindActionCreators(userActions, dispatch)
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginPage);
